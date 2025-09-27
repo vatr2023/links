@@ -1,379 +1,241 @@
-<html><head><base href="https://t.me/Ashlynn_Repository"/>
-    <title>Links</title>
-    <link rel="icon" href="https://envs.sh/Auz.jpg" type="image/x-icon"> <!-- Favicon added here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strong HTML Encoder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-      }
-    
-      :root {
-        --primary-bg: #000000;
-        --card-bg: rgba(40, 40, 40, 0.3);
-        --text-primary: #ffffff;
-        --text-secondary: rgba(255, 255, 255, 0.7);
-        --accent: #0a84ff;
-        --border-radius: clamp(16px, 4vw, 24px);
-        --spacing: clamp(12px, 3vw, 24px);
-        --tile-size: clamp(120px, 40vw, 240px);
-      }
-    
-      @media (prefers-reduced-motion: reduce) {
-        * {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
         }
-      }
-    
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
-        background: var(--primary-bg);
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-        color: var(--text-primary);
-        padding: var(--spacing);
-        position: relative;
-        overflow-x: hidden;
-        overscroll-behavior: none;
-      }
-    
-      html {
-        height: -webkit-fill-available;
-      }
-    
-      .fluid-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        filter: blur(80px);
-        opacity: 0.5;
-        pointer-events: none;
-      }
-    
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-      }
-    
-      h1 {
-        font-size: clamp(1.5rem, 5vw, 3rem);
-        font-weight: 700;
-        text-align: center;
-        margin: clamp(1rem, 4vh, 2rem) 0 clamp(1.5rem, 5vh, 3rem);
-        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: -0.5px;
-        padding: 0 var(--spacing);
-      }
-    
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(var(--tile-size), 1fr));
-        gap: var(--spacing);
-        padding: var(--spacing);
-        justify-items: center;
-        align-items: center;
-      }
-    
-      @media (max-width: 480px) {
-        .grid {
-          grid-template-columns: repeat(2, 1fr);
+        .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-      }
-    
-      .tile {
-        background: rgba(40, 40, 40, 0.2);
-        border-radius: var(--border-radius);
-        padding: calc(var(--spacing) * 1.2);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        width: 100%;
-        aspect-ratio: 1;
-        touch-action: manipulation;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-      }
-    
-      @media (hover: hover) {
-        .tile:hover {
-          transform: translateY(-5px) scale(1.02);
-          background: rgba(60, 60, 60, 0.3);
-          border-color: rgba(255, 255, 255, 0.15);
-          box-shadow: 
-            0 10px 40px -10px rgba(0, 0, 0, 0.3),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
-      }
-    
-      .tile:active {
-        transform: scale(0.98);
-        transition: transform 0.1s;
-      }
-    
-      .tile::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
-          rgba(255, 255, 255, 0.12), 
-          transparent 60%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-    
-      @media (hover: hover) {
-        .tile:hover::before {
-          opacity: 1;
-        }
-      }
-    
-      .tile svg {
-        width: clamp(35px, 7vw, 50px);
-        height: clamp(35px, 7vw, 50px);
-        margin-bottom: calc(var(--spacing) * 0.75);
-        filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-    
-      @media (hover: hover) {
-        .tile:hover svg {
-          transform: scale(1.1) translateY(-5px);
-        }
-      }
-    
-      .tile h3 {
-        color: var(--text-primary);
-        font-weight: 500;
-        font-size: clamp(0.9rem, 3.5vw, 1.15rem);
-        margin-bottom: calc(var(--spacing) * 0.25);
-        text-align: center;
-      }
-    
-      .tile p {
-        color: var(--text-secondary);
-        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
-        text-align: center;
-        font-weight: 400;
-        opacity: 0.8;
-      }
-    
-      @media (max-width: 480px) {
-        .tile p {
-          display: none;
-        }
-      }
-    
-      @media (hover: none) {
-        .tile {
-          user-select: none;
-          -webkit-user-select: none;
-        }
-      }
-    
-      .tile:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px var(--accent);
-      }
-    
-      .tile {
-        will-change: transform;
-        contain: content;
-      }
-    
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --primary-bg: #000000;
-          --card-bg: rgba(40, 40, 40, 0.3);
-        }
-      }
     </style>
-    </head>
-    <body>
-    
-    <canvas class="fluid-background" id="fluidCanvas"></canvas>
-    
-    <div class="container">
-      <h1>Some Links </h1>
-      <div class="grid">
-   <a href="https://t.me/Itz_Ashlynn" target="_blank" rel="noopener" class="tile" role="button" aria-label="Open Telegram">
-     <svg viewBox="0 0 24 24" aria-hidden="true">
-       <path fill="#0088cc" d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.565 7.354l-2.297 10.859c-.173.78-.63.967-1.277.601l-3.529-2.607-1.703 1.64c-.189.189-.348.348-.716.348l.254-3.565 6.496-5.88c.282-.254-.061-.396-.436-.143l-8.02 5.05-3.473-1.086c-.755-.235-.77-.755.158-1.115l13.566-5.229c.63-.235 1.222.143 1.002 1.099z"/>
-      </svg>
-      <h3>Contact</h3>
-      <p>You can reach me via Telegram here.</p>
-     </a>
-  
+</head>
+<body class="bg-gray-900 text-gray-200 flex items-center justify-center min-h-screen p-4">
+    <main class="w-full max-w-4xl bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-2xl shadow-indigo-500/10 p-6 md:p-10 border border-gray-700">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold gradient-text">Strong HTML Encoder</h1>
+            <p class="text-gray-400 mt-3 max-w-2xl mx-auto">
+                Paste your HTML to make it unreadable while keeping it perfectly functional in any browser. Designed for accessibility and security.
+            </p>
+        </header>
 
-        <a href="https://github.com/Itz-Ashlynn" target="_blank" rel="noopener" class="tile" role="button" aria-label="Ouvrir GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#fff" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <h3>GitHub</h3>
-          <p>You can view all my public repositories on GitHub</p>
-        </a>
-    
-     <a href="https://t.me/Ashlynn_Repository" target="_blank" rel="noopener" class="tile" role="button" aria-label="Open Your Custom Icon Link">
-      <img src="https://iili.io/2qupaAx.png" alt="Custom Icon" style="width: 100px; height: 100px;" aria-hidden="true">
-     <h3>Ashlynn Repository</h3>
-     <p>Join my channel for free access to advanced bots and APIs.</p>
-    </a>
+        <!-- Input Section -->
+        <section class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+                 <label for="input-html" class="block text-lg font-semibold text-indigo-300">Your HTML Code</label>
+                 <button id="sample-btn" class="text-sm bg-gray-700 hover:bg-gray-600 text-indigo-300 font-medium py-1 px-3 rounded-lg transition-colors duration-300">
+                    Insert Sample
+                </button>
+            </div>
+            <textarea 
+                id="input-html" 
+                rows="10"
+                class="w-full p-4 bg-gray-900 border-2 border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 text-gray-200 placeholder-gray-500"
+                placeholder="<!-- Paste your HTML code here, or use the 'Insert Sample' button -->"
+                aria-describedby="input-help"
+            ></textarea>
+            <p id="input-help" class="sr-only">Enter the HTML content you wish to encode, or use the button to insert a sample code.</p>
+        </section>
 
-     <a href="https://itz-ashlynn.github.io/Personal_portfolio/" target="_blank" rel="noopener" class="tile" role="button" aria-label="Open Your Custom Icon Link" style="text-decoration: none; color: inherit;">
-       <span style="font-size: 60px;" aria-hidden="true">⚡</span>
-       <h3>Personal Portfolio</h3>
-       <p>Personal Portfolio: A showcase of my work and experiences</p>
-      </a>
+        <!-- Action Button -->
+        <div class="flex justify-center mb-6">
+            <button id="encode-btn" class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-indigo-500/40 transform hover:-translate-y-1 transition-all duration-300 text-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-2 -mt-1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Encode HTML
+            </button>
+        </div>
 
-      </div>
-    </div>
-    
+        <!-- Output Section (Initially hidden) -->
+        <section id="output-section" class="hidden">
+            <label for="output-html" class="block text-lg font-semibold mb-2 text-pink-400">Encoded HTML Source Code</label>
+            <textarea 
+                id="output-html" 
+                rows="10"
+                readonly
+                class="w-full p-4 bg-gray-900 border-2 border-gray-700 rounded-lg focus:outline-none cursor-copy text-gray-400 font-mono text-sm"
+                aria-describedby="output-help"
+            ></textarea>
+            <p id="output-help" class="sr-only">This is the encoded HTML source code. You can copy it or download it as a file.</p>
+
+            <div class="flex flex-col md:flex-row gap-4 mt-4">
+                <button id="copy-btn" class="flex-1 bg-gray-700 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    Copy to Clipboard
+                </button>
+                <button id="download-btn" class="flex-1 bg-gray-700 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download as .html file
+                </button>
+            </div>
+        </section>
+
+        <!-- Status Message Area for Accessibility -->
+        <div id="status-message" class="text-center mt-6 text-green-400 font-medium" aria-live="polite" role="status"></div>
+    </main>
+
     <script>
-    const canvas = document.getElementById('fluidCanvas');
-    const ctx = canvas.getContext('2d', { alpha: false });
-    
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    let animationFrameId;
-    let isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    const particles = [];
-    const particleCount = isReducedMotion ? 10 : 50;
-    const colors = ['#0a84ff', '#10A37F', '#FF0000', '#4285F4'];
-    
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-    
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = Math.random() * 0.5 - 0.25;
-        this.vy = Math.random() * 0.5 - 0.25;
-        this.radius = Math.random() * 150 + 100;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-      }
-    
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-    
-        if (this.x < -this.radius) this.x = width + this.radius;
-        if (this.x > width + this.radius) this.x = -this.radius;
-        if (this.y < -this.radius) this.y = height + this.radius;
-        if (this.y > height + this.radius) this.y = -this.radius;
-      }
-    
-      draw() {
-        ctx.beginPath();
-        const gradient = ctx.createRadialGradient(
-          this.x, this.y, 0,
-          this.x, this.y, this.radius
-        );
-        gradient.addColorStop(0, `${this.color}33`);
-        gradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = gradient;
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-    
-    function animate() {
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, width, height);
-      
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      
-      animationFrameId = requestAnimationFrame(animate);
-    }
-    
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      }, 150);
-    });
-    
-    let isTouching = false;
-    document.querySelectorAll('.tile').forEach(tile => {
-      tile.addEventListener('touchstart', () => {
-        isTouching = true;
-        tile.style.transform = 'scale(0.98)';
-      }, { passive: true });
-    
-      tile.addEventListener('touchend', () => {
-        isTouching = false;
-        tile.style.transform = '';
-      }, { passive: true });
-    
-      if (window.matchMedia('(hover: hover)').matches) {
-        tile.addEventListener('mousemove', (e) => {
-          if (!isTouching) {
-            const rect = tile.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        const inputHtmlEl = document.getElementById('input-html');
+        const outputHtmlEl = document.getElementById('output-html');
+        const encodeBtn = document.getElementById('encode-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const sampleBtn = document.getElementById('sample-btn');
+        const outputSection = document.getElementById('output-section');
+        const statusMessageEl = document.getElementById('status-message');
+
+        let statusTimeout;
+
+        // Function to display a status message for screen readers and sighted users
+        function showStatus(message, isError = false) {
+            clearTimeout(statusTimeout);
+            statusMessageEl.textContent = message;
+            statusMessageEl.className = isError 
+                ? 'text-center mt-6 text-red-400 font-medium' 
+                : 'text-center mt-6 text-green-400 font-medium';
             
-            tile.style.setProperty('--x', `${(x / rect.width) * 100}%`);
-            tile.style.setProperty('--y', `${(y / rect.height) * 100}%`);
-          }
+            statusTimeout = setTimeout(() => {
+                statusMessageEl.textContent = '';
+            }, 4000);
+        }
+
+        // The core encoding function
+        function encodeHtml(htmlString) {
+            // Generate a random key for the XOR encryption for better security
+            const key = Math.floor(Math.random() * 254) + 1; // Avoid 0
+            
+            const encodedData = htmlString
+                .split('')
+                .map(char => char.charCodeAt(0) ^ key)
+                .join(',');
+
+            // The template for the output file, containing the decoder script
+            const outputTemplate = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Protected Page</title>
+</head>
+<body>
+    <script>
+        const e = "${encodedData}";
+        const k = ${key};
+        const d = e.split(',').map(c => String.fromCharCode(parseInt(c, 10) ^ k)).join('');
+        document.open();
+        document.write(d);
+        document.close();
+    <\/script>
+    <noscript>
+        <h1>JavaScript is required to view this page.</h1>
+        <p>Please enable JavaScript in your browser settings.</p>
+    </noscript>
+</body>
+</html>`;
+            return outputTemplate;
+        }
+
+        // Event listener for the Sample button
+        sampleBtn.addEventListener('click', () => {
+            const sampleCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Page</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f0f0; text-align: center; padding-top: 50px; }
+        h1 { color: #333; }
+        p { color: #666; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome!</h1>
+    <p>This is a sample HTML page.</p>
+    <button onclick="alert('Hello from the encoded world!')">Click Me!</button>
+
+</body>
+</html>`;
+            inputHtmlEl.value = sampleCode;
+            showStatus('Sample HTML inserted.');
         });
-      }
-    });
-    
-    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-      isReducedMotion = e.matches;
-      if (isReducedMotion) {
-        cancelAnimationFrame(animationFrameId);
-      } else {
-        animate();
-      }
-    });
-    
-    if (!isReducedMotion) {
-      animate();
-    }
-    
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrameId);
-      } else if (!isReducedMotion) {
-        animate();
-      }
-    });
+
+        // Event listener for the Encode button
+        encodeBtn.addEventListener('click', () => {
+            const rawHtml = inputHtmlEl.value;
+            if (!rawHtml.trim()) {
+                showStatus('Error: Input HTML cannot be empty.', true);
+                inputHtmlEl.focus();
+                return;
+            }
+            const encodedResult = encodeHtml(rawHtml);
+            outputHtmlEl.value = encodedResult;
+            outputSection.classList.remove('hidden');
+            showStatus('Encoding successful! Your secure HTML is ready.');
+        });
+        
+        // Event listener for the Copy button
+        copyBtn.addEventListener('click', () => {
+            const textToCopy = outputHtmlEl.value;
+            if (!textToCopy) return;
+
+            // Use a temporary textarea for robust copying, including in iFrames
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showStatus('Copied to clipboard successfully!');
+            } catch (err) {
+                showStatus('Failed to copy text. Please try again.', true);
+                console.error('Copy failed:', err);
+            }
+            
+            document.body.removeChild(tempTextArea);
+        });
+
+        // Event listener for the Download button
+        downloadBtn.addEventListener('click', () => {
+            const textToDownload = outputHtmlEl.value;
+            if (!textToDownload) return;
+
+            const blob = new Blob([textToDownload], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            a.href = url;
+            a.download = 'encoded-page.html';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showStatus('Download started...');
+        });
     </script>
-    
-    </body></html>
+</body>
+</html>
+
+
